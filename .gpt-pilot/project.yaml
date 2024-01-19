@@ -1,0 +1,123 @@
+name: FitTechPro
+description: 'Title: FitTechPro: Your Personalized Fitness Trainer
+
+
+  Summary:
+
+
+  FitTechPro is a fitness application designed to offer personalized workouts with real-time pose detection technology, aimed
+  at users with varying fitness goals. The application incorporates AI to provide feedback on exercise technique to ensure
+  safety and effectiveness. Key features include personalized workouts, an exercise library with video demonstrations, progress
+  tracking, virtual trainers, nutrition tracking, fitness community engagement, and compatibility with wearable devices.
+
+
+  The onboarding process involves users creating a profile and specifying their goals and equipment. FitTechPro then creates
+  personalized workout plans and uses the device''s camera for live feedback during workouts. Users'' progress is logged,
+  and nutritional guidance is offered. The involvement of virtual trainers and community participation enriches the user experience.
+
+
+  The application relies on two main scripts for its functionalities; ''PoseModule.py'' for pose detection, and a main script
+  for tracking exercise repetitions and providing feedback. Both scripts include detailed coding in Python using OpenCV, MediaPipe,
+  NumPy, and other libraries.
+
+
+  The development of FitTechPro requires expertise in mobile app development, AI, pose detection, fitness tracking, and user
+  interface design. The app is targeted for launch on both iOS and Android platforms and will support multiple languages.
+  AI elements, possibly including OpenAI''s NLP models, will be used to automatically generate workout plans. At its launch,
+  there is no specified list of wearable devices for compatibility.'
+user_stories: null
+architecture:
+- Node.js
+- Express
+- React Native
+- TensorFlow.js
+- MobileNet
+- MongoDB
+- Mongoose
+- Redux
+- Socket.io
+- Bootstrap
+- HTML
+- CSS3
+- MediaPipe
+- NumPy
+- OpenCV-python
+- cronjob
+- React Navigation
+- i18next
+- Expo
+development_plan:
+- description: Set up the project structure for FitTechPro with React Native using Expo, and initialize a Git repository for
+    version control.
+  programmatic_goal: Initialize a React Native project with Expo, ensure a successful build on a local development machine,
+    and push the initial commit to the Git repository.
+  user_review_goal: Ensure that the Expo project starts without errors and a 'Welcome to FitTechPro' screen is displayed on
+    the Expo Go app.
+- description: Implement the user authentication system with Node.js backend, including secure password handling, registration,
+    login, and session management.
+  programmatic_goal: Create REST API endpoints for user registration and login that interfaces with MongoDB, complete with
+    JWT based session management.
+  user_review_goal: Verify that users can register with validation feedback and, once registered, can log in and out with
+    persistent sessions.
+- description: Design the onboarding screens in React Native that capture user profile and fitness goals, and create the REST
+    API to store this data in the MongoDB database.
+  programmatic_goal: Develop React Native screens for the onboarding process with form validation and ensure the REST API
+    for profile data creation and updating is working with the database.
+  user_review_goal: Confirm the onboarding process captures user information correctly and the user profile is created and
+    retrievable via the app.
+- description: Build the exercise library interface in React Native with search and filtering capabilities and set up the
+    MongoDB schema for storing exercises.
+  programmatic_goal: Implement the client-side exercise library interface and server-side REST API for listing, searching,
+    and filtering exercises stored in MongoDB.
+  user_review_goal: Ensure that the exercise library is user-friendly, searchable, and filters work correctly, with all data
+    presented accurately.
+- description: Integrate TensorFlow.js with PoseModule.py script for real-time pose detection and create interface in React
+    Native to display feedback during workouts.
+  programmatic_goal: Embed TensorFlow.js and PoseModule.py within the React Native environment to successfully receive real-time
+    pose detection data, and develop the UI component to display pose correctness feedback.
+  user_review_goal: Check if the app can analyze user poses in real-time during workouts with visual feedback reflected accurately
+    on the interface.
+- description: Develop the feature for personalized workout plan generation using AI algorithms, incorporating user data and
+    goals.
+  programmatic_goal: Code an AI module that generates personalized workout plans based on user data, and integrate this feature
+    with the backend and frontend.
+  user_review_goal: Evaluate the effectiveness of personalized workout plans by confirming they align with users' specified
+    fitness goals and preferences.
+- description: Implement progress tracking functionality with visualization for user performance over time and adjust workout
+    plans accordingly.
+  programmatic_goal: Create necessary REST API endpoints and frontend components for logging and visualizing workout data,
+    and ensure dynamic adjustments to workout plans are functional based on user progress.
+  user_review_goal: Confirm that the progress tracking displays accurate workout data over time with intuitive charts and
+    that workout plans are being adjusted based on user performance.
+- description: Create nutrition tracking features with dietary goals and feedback, linking to user profiles and workout plans.
+  programmatic_goal: Develop the data models for nutrition tracking, the corresponding REST API endpoints, and the React Native
+    components for users to input and track their dietary habits.
+  user_review_goal: Verify that users can log nutritional intake, set dietary goals, and receive relevant feedback integrated
+    with their workout plans.
+- description: Implement virtual trainer interactions using Socket.io to deliver live feedback and coaching during workouts.
+  programmatic_goal: Integrate Socket.io to enable real-time communication between the client and the virtual trainers on
+    the server, and code the client-side interface for live interactions.
+  user_review_goal: Assess the virtual trainer feature by ensuring that users receive live feedback and coaching during workouts
+    with minimal latency.
+- description: Enable community engagement features where users can connect and share progress, with React Native screens
+    and MongoDB schemas for user interactions.
+  programmatic_goal: Create the necessary MongoDB structure for storing community interactions and develop the React Native
+    UI for community engagement with backend support.
+  user_review_goal: Test community features to ensure users can connect, share progress, and interact with other users' profiles
+    without issues.
+- description: Add multi-language support with i18next integration in React Native to provide a localized experience in various
+    languages.
+  programmatic_goal: Implement i18next in the React Native app to support multiple languages, ensuring all text can be appropriately
+    localized from a JSON resource file.
+  user_review_goal: Confirm that users can switch languages, and the app's UI reflects this change correctly across all screens.
+- description: Develop functionality to synchronize data with wearable devices, including a cronjob for periodic updates.
+  programmatic_goal: Implement cronjob scripts that facilitate data synchronization between the app and a limited set of hardcoded
+    wearable devices' APIs for simulated testing.
+  user_review_goal: Ascertain that the app syncs with simulated wearable device data regularly and displays this information
+    accurately to the user.
+- description: Finalize touch-ups on the user interface design to ensure consistent branding with Bootstrap, HTML, and CSS3
+    across React Native components.
+  programmatic_goal: Apply a consistent theme and branding guidelines across all React Native components, leveraging Bootstrap's
+    consistency in styling.
+  user_review_goal: Review the final UI design to verify that the app maintains a high-quality, consistent look and feel that
+    adheres to branding.

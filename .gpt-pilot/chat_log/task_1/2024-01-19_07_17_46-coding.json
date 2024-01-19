@@ -1,0 +1,122 @@
+{
+  "endpoint": "OPENAI",
+  "model": "gpt-4-1106-preview",
+  "functions": [
+    {
+      "name": "start_debugging",
+      "description": "Starts the debugging process based on the list of steps that need to be done to debug the problem.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "thoughts": {
+            "type": "string",
+            "description": "Thoughts that you have about the problem that you are trying to debug."
+          },
+          "reasoning": {
+            "type": "string"
+          },
+          "steps": {
+            "type": "array",
+            "description": "List of steps that need to be done to debug the problem.",
+            "items": {
+              "type": "object",
+              "description": "A single step that needs to be done to get closer to debugging this issue.  Remember, if you need to run a command that doesn't finish by itself (eg. a command to run an app), put the timeout to 3000 milliseconds. If you need to create a directory that doesn't exist and is not the root project directory, always create it by running a command `mkdir`",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "command",
+                    "code_change",
+                    "human_intervention"
+                  ],
+                  "description": "Type of the step that needs to be done to debug this issue."
+                },
+                "command": {
+                  "type": "object",
+                  "description": "Command that needs to be run to complete the current task. This should be used only if the task is of a type \"command\".",
+                  "properties": {
+                    "command": {
+                      "type": "string",
+                      "description": "Command that needs to be run to debug this issue."
+                    },
+                    "timeout": {
+                      "type": "number",
+                      "description": "Timeout in milliseconds that represent the approximate time this command takes to finish. If you need to run a command that doesn't finish by itself (eg. a command to run an app), put the timeout to 3000 milliseconds."
+                    },
+                    "success_message": {
+                      "type": "string",
+                      "description": "A message to look for in the output of the command to determine if successful or not."
+                    },
+                    "command_id": {
+                      "type": "string",
+                      "description": "If the process needs to continue running after the command is executed provide a unique command identifier which you can use to kill the process later."
+                    }
+                  },
+                  "required": [
+                    "command",
+                    "timeout"
+                  ]
+                },
+                "code_change_description": {
+                  "type": "string",
+                  "description": "Description of a step in debugging this issue when there are code changes required. This should be used only if the task is of a type \"code_change\" and it should thoroughly describe what needs to be done to implement the code change for a single file - it cannot include changes for multiple files."
+                },
+                "human_intervention_description": {
+                  "type": "string",
+                  "description": "Description of a step in debugging this issue when there is a human intervention needed. This should be used only if the task is of a type \"human_intervention\"."
+                },
+                "need_to_see_output": {
+                  "type": "boolean",
+                  "description": "Set to `true` if the definition of subsequent steps may need to change after you see the output of a successful execution of this step. For example, if the purpose of a command is to check the status of a service or contents of a file before deciding how to proceed then this flag should be set to `true`. If subsequent steps can be executed as long as this step is successful, then this flag does not need to be set."
+                },
+                "check_if_fixed": {
+                  "type": "boolean",
+                  "description": "Flag that indicates if the original command that triggered the error that's being debugged should be tried after this step to check if the error is fixed. If you think that the original command `delete node_modules/ && delete package-lock.json` will pass after this step, then this flag should be set to TRUE and if you think that the original command will still fail after this step, then this flag should be set to `false`."
+                }
+              },
+              "required": [
+                "type",
+                "check_if_fixed"
+              ]
+            }
+          }
+        },
+        "required": [
+          "thoughts",
+          "reasoning",
+          "steps"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "thoughts": "No output from the stdout indicates that the command may have run successfully without any messages or errors, or it did not run at all. It is unusual for there to be no output whatsoever following an npm install command.",
+    "reasoning": "First, it's important to verify that the expo-cli was actually installed. Due to the lack of any output, the next logical step is to check the version of expo-cli to confirm the installation. If the installation was successful, running the original command that triggered the error should no longer produce an error.",
+    "steps": [
+      {
+        "type": "command",
+        "command": {
+          "command": "expo --version",
+          "timeout": 5000
+        },
+        "check_if_fixed": false
+      },
+      {
+        "type": "command",
+        "command": {
+          "command": "npm install -g expo-cli@latest",
+          "timeout": 60000
+        },
+        "check_if_fixed": false
+      },
+      {
+        "type": "command",
+        "command": {
+          "command": "cd FitTechPro && expo start",
+          "timeout": 3000
+        },
+        "check_if_fixed": true
+      }
+    ]
+  }
+}
